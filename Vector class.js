@@ -17,7 +17,7 @@ function Vector(vector){
     var ansObj = answer;
     var ans=ansObj["vector"];
     if (this.res===ans){
-      return "Vector("+this.res+"])";
+      return "Vector("+this.res+")";
     }
   }
 }
