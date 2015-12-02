@@ -22,7 +22,7 @@ function Vector(vector){
     }
   };
 }
-
+//Test
 var a = new Vector([1,2]);
 var b = new Vector([3,4]);
 
