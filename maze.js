@@ -8,42 +8,33 @@ function getToX(maze){
         values.push(maze[i][j]);
         
       } else if (maze[i][j+1]==="_"){
-        j++;        
+        j++;                
         currentCell=[i,j%(maze.length-1)]; 
         values.push(maze[i][j%(maze.length-1)]);
-
-      } else if([i+1][j]==="W" || [i+1][j]==="x") {
+    
+      } else if([i+1][j]==="W") {
           break;
-      }
-      
-      path.push(currentCell);
+        }      
+        
+    path.push(currentCell);      
   }
-  
-  for(k=0; k<maze.length; k++){
-      if(maze[i][k]==="x"){
-          var xLoc=[i,k];
-         
-          if(k>currentCell[1]){
-              for(l=currentCell[1]; l<=xLoc[1]; l++){
-                  currentCell=[i, l];                  
-                  path.push(currentCell);
-                  values.push(maze[currentCell[0]][currentCell[1]]);
-              }
-          } else if(k<currentCell[1]){
-              for(l=currentCell[1]; l>=xLoc[1]; l--){
-                  currentCell=[i, l];
-                  path.push(currentCell);
-                  values.push(maze[currentCell[0]][currentCell[1]]);
-              }
-          } else {
-            break;
-          }
-      break;
-  }
-          
-      }
-  
- 
+  //The row "x" is in
+  var xArray=maze[i];
+  var xLoc = xArray.indexOf("x");
 
-         return {path:path, values:values};
+  if(xLoc>currentCell[1]){
+    for(l=currentCell[1]; l<=xLoc; l++){
+        currentCell=[i, l];                  
+        path.push(currentCell);
+        values.push(maze[currentCell[0]][currentCell[1]]);
+    }
+  } else if(xLoc<currentCell[1]){
+        for(l=currentCell[1]; l>=xLoc; l--){
+            currentCell=[i, l];
+            path.push(currentCell);
+            values.push(maze[currentCell[0]][currentCell[1]]);
+        }
+  } 
+  
+return {path:path, values:values};
 }
