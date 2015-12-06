@@ -1,29 +1,20 @@
 function getToX(maze){
-  var path=[], values=[];
-  var i=0;
-  var j=0;
-  var currentCell;
-  var tmp=0;
+  var path=[[0,0]], values=[], i=0, j=0, currentCell;
+
   while(i<maze.length-2 && j<maze.length){
-      if (maze[i+1][j]==="_"){
+      if (maze[i+1][j]==="_"){     
+        i++;
         currentCell=[i,j]; 
         values.push(maze[i][j]);
-        i++;
-             
-        for(m=0; m<maze.length; m++){
-          if(maze[i+1][m]!=="W"){
-             break;
-          } else tmp+=1;
-        }
-        if(tmp===maze.length){
-          break;
-        }
-
+        
       } else if (maze[i][j+1]==="_"){
-        j++;
-        currentCell=[i,j%maze.length-1]; 
-        values.push(maze[i][j%maze.length-1]);
-        }
+        j++;        
+        currentCell=[i,j%(maze.length-1)]; 
+        values.push(maze[i][j%(maze.length-1)]);
+
+      } else if([i+1][j]==="W" || [i+1][j]==="x") {
+          break;
+      }
       
       path.push(currentCell);
   }
@@ -45,11 +36,14 @@ function getToX(maze){
                   values.push(maze[currentCell[0]][currentCell[1]]);
               }
           } else {
-          break;
+            break;
           }
-          break;
-          }
+      break;
+  }
           
       }
+  
+ 
+
          return {path:path, values:values};
 }
